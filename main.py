@@ -45,11 +45,90 @@ area = 0
 ### Shape Functions###
 
 def rectangle_update_frame():
-  global area
   
-def paralellogram_update_frame():
-  global area
+  input_box = tk.Frame(master=window)
+  input_box.forget
 
+  lbl_length_a = tk.Label(text="Length A", master=input_box)
+  lbl_length_a['font'] = myFont
+  lbl_length_a.grid(column=0, row=0)
+
+  ent_length_a = tk.Entry(master=input_box)
+  ent_length_a['font'] = myFont
+  ent_length_a.grid(column=1, row=0)
+
+  lbl_length_b = tk.Label(text="Length B", master=input_box)
+  lbl_length_b['font'] = myFont
+  lbl_length_b.grid(column=0, row=1)
+
+  ent_length_b = tk.Entry(master=input_box)
+  ent_length_b['font'] = myFont
+  ent_length_b.grid(column=1, row=1)
+
+  btn_calc_peri = tk.Button(text="Perimeter", master=input_box)
+  btn_calc_peri['font'] = myFont
+  btn_calc_peri.grid(column=0, row=2)
+  
+  btn_calc_area = tk.Button(text="Area", master=input_box)
+  btn_calc_area['font'] = myFont
+  btn_calc_area.grid(column=1, row=2)
+
+  input_box.grid(column=0, row=2)
+
+  
+def square_update_frame():
+  
+  input_box = tk.Frame(master=window)
+  input_box.forget
+  lbl_length_a = tk.Label(text="Length", master=input_box)
+  lbl_length_a['font'] = myFont
+  lbl_length_a.grid(column=0, row=0)
+
+  ent_length_a = tk.Entry(master=input_box)
+  ent_length_a['font'] = myFont
+  ent_length_a.grid(column=1, row=0)
+
+  btn_calc_peri = tk.Button(text="Perimeter", master=input_box)
+  btn_calc_peri['font'] = myFont
+  btn_calc_peri.grid(column=0, row=2)
+
+  btn_calc_area = tk.Button(text="Area", master=input_box)
+  btn_calc_area['font'] = myFont
+  btn_calc_area.grid(column=1, row=2)
+
+  input_box.grid(column=0, row=2)
+
+def para_update_frame():
+  
+  input_box = tk.Frame(master=window)
+  input_box.forget
+  lbl_length_a = tk.Label(text="Length A", master=input_box)
+  lbl_length_a['font'] = myFont
+  lbl_length_a.grid(column=0, row=0)
+
+  ent_length_a = tk.Entry(master=input_box)
+  ent_length_a['font'] = myFont
+  ent_length_a.grid(column=1, row=0)
+
+  lbl_length_b = tk.Label(text="Length B", master=input_box)
+  lbl_length_b['font'] = myFont
+  lbl_length_b.grid(column=0, row=1)
+
+  ent_length_b = tk.Entry(master=input_box)
+  ent_length_b['font'] = myFont
+  ent_length_b.grid(column=1, row=1)
+
+  btn_calc_peri = tk.Button(text="Perimeter", master=input_box)
+  btn_calc_peri['font'] = myFont
+  btn_calc_peri.grid(column=0, row=2)
+
+  btn_calc_area = tk.Button(text="Area", master=input_box)
+  btn_calc_area['font'] = myFont
+  btn_calc_area.grid(column=1, row=2)
+
+  input_box.grid(column=0, row=2)
+  
+  
 def circle_update_frame():
   global area
 
@@ -112,14 +191,41 @@ def triangle_perimeter():
 #Main Code
 
 
-window = tk.Tk(className="Movie Fundraising Program")
+window = tk.Tk(className=" Area Perimeter Calculator")
 window.geometry("500x300")
 
 #Define font
 myFont = font.Font(size=10)
 
+lbl_title = tk.Label(text = "Area / Perimeter Calculator")
+lbl_title.grid(column=0, row=0, sticky="nsew")
+
+
 fr_buttons = tk.Frame(master = window)
 #Create buttons for the shapes...
+rectangle = tk.Button(text="Rectangle", master=fr_buttons, command=rectangle_update_frame)
+rectangle['font'] = myFont
+rectangle.grid(column=0, row=0, sticky="nsew")
+
+square = tk.Button(text="Square", master=fr_buttons, command=square_update_frame)
+square['font'] = myFont
+square.grid(column=1, row=0, sticky="nsew")
+
+para = tk.Button(text="Paralellogram", master=fr_buttons, command=para_update_frame)
+para['font'] = myFont
+para.grid(column=2, row=0, sticky="nsew")
+
+circle = tk.Button(text="Circle", master=fr_buttons, command=circle_update_frame)
+circle['font'] = myFont
+circle.grid(column=0, row=1, sticky="nsew")
+
+triangle = tk.Button(text="Triangle", master=fr_buttons, command=triangle_update_frame)
+triangle['font'] = myFont
+triangle.grid(column=1, row=1, sticky="nsew")
+
+trapisium = tk.Button(text="Trapisium", master=fr_buttons, command=trapisium_update_frame)
+trapisium['font'] = myFont
+trapisium.grid(column=2, row=1, sticky="nsew")
 
 fr_buttons.grid(column=0, row=1)
 
