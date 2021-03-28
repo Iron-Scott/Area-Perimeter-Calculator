@@ -40,14 +40,18 @@ t_height = 0
 perimeter = 0
 area = 0
 
-### Functions ###
 
+### Functions ###
+def clear_frame():
+  input_box.destroy()
 ### Shape Functions###
 
 def rectangle_update_frame():
   
+  clear_frame()
+  
   input_box = tk.Frame(master=window)
-  input_box.forget
+  
 
   lbl_length_a = tk.Label(text="Length A", master=input_box)
   lbl_length_a['font'] = myFont
@@ -79,6 +83,7 @@ def rectangle_update_frame():
 def square_update_frame():
   
   input_box = tk.Frame(master=window)
+  
   input_box.forget
   lbl_length_a = tk.Label(text="Length", master=input_box)
   lbl_length_a['font'] = myFont
@@ -130,14 +135,128 @@ def para_update_frame():
   
   
 def circle_update_frame():
-  global area
+  input_box = tk.Frame(master=window)
+  input_box.forget
+  lbl_length_a = tk.Label(text="Radius", master=input_box)
+  lbl_length_a['font'] = myFont
+  lbl_length_a.grid(column=0, row=0)
+
+  ent_radius = tk.Entry(master=input_box)
+  ent_radius['font'] = myFont
+  ent_radius.grid(column=1, row=0)
+
+  btn_calc_peri = tk.Button(text="Perimeter", master=input_box)
+  btn_calc_peri['font'] = myFont
+  btn_calc_peri.grid(column=0, row=2)
+
+  btn_calc_area = tk.Button(text="Area", master=input_box)
+  btn_calc_area['font'] = myFont
+  btn_calc_area.grid(column=1, row=2)
+
+  input_box.grid(column=0, row=2)
+  
 
 def triangle_update_frame():
-  global area
+  
+  input_box = tk.Frame(master=window)
+  input_box.forget
+  
+  lbl_length_a = tk.Label(text="Length A", master=input_box)
+  lbl_length_a['font'] = myFont
+  lbl_length_a.grid(column=0, row=0)
+
+  ent_radius = tk.Entry(master=input_box)
+  ent_radius['font'] = myFont
+  ent_radius.grid(column=1, row=0)
+
+  lbl_length_b = tk.Label(text="Length B", master=input_box)
+  lbl_length_b['font'] = myFont
+  lbl_length_b.grid(column=0, row=1)
+
+  ent_length_b = tk.Entry(master=input_box)
+  ent_length_b['font'] = myFont
+  ent_length_b.grid(column=1, row=1)
+  
+  lbl_length_c = tk.Label(text="Length C", master=input_box)
+  lbl_length_c['font'] = myFont
+  lbl_length_c.grid(column=0, row=2)
+
+  ent_length_c = tk.Entry(master=input_box)
+  ent_length_c['font'] = myFont
+  ent_length_c.grid(column=1, row=2)
+  
+  lbl_height = tk.Label(text="Height", master=input_box)
+  lbl_height['font'] = myFont
+  lbl_height.grid(column=0, row=2)
+
+  ent_length_c = tk.Entry(master=input_box)
+  ent_length_c['font'] = myFont
+  ent_length_c.grid(column=1, row=2)
+  
+  btn_calc_peri = tk.Button(text="Perimeter", master=input_box)
+  btn_calc_peri['font'] = myFont
+  btn_calc_peri.grid(column=0, row=4)
+
+  btn_calc_area = tk.Button(text="Area", master=input_box)
+  btn_calc_area['font'] = myFont
+  btn_calc_area.grid(column=1, row=4)
+
+  input_box.grid(column=0, row=2)
   
 
 def trapisium_update_frame():
-  global area
+  input_box = tk.Frame(master=window)
+  input_box.forget
+  
+  lbl_length_a = tk.Label(text="Length A", master=input_box)
+  lbl_length_a['font'] = myFont
+  lbl_length_a.grid(column=0, row=0)
+
+  ent_radius = tk.Entry(master=input_box)
+  ent_radius['font'] = myFont
+  ent_radius.grid(column=1, row=0)
+
+  lbl_length_b = tk.Label(text="Length B", master=input_box)
+  lbl_length_b['font'] = myFont
+  lbl_length_b.grid(column=0, row=1)
+
+  ent_length_b = tk.Entry(master=input_box)
+  ent_length_b['font'] = myFont
+  ent_length_b.grid(column=1, row=1)
+  
+  lbl_length_c = tk.Label(text="Length C", master=input_box)
+  lbl_length_c['font'] = myFont
+  lbl_length_c.grid(column=0, row=2)
+
+  ent_length_c = tk.Entry(master=input_box)
+  ent_length_c['font'] = myFont
+  ent_length_c.grid(column=1, row=2)
+  
+  lbl_length_c = tk.Label(text="Length D", master=input_box)
+  lbl_length_c['font'] = myFont
+  lbl_length_c.grid(column=0, row=3)
+
+  ent_length_c = tk.Entry(master=input_box)
+  ent_length_c['font'] = myFont
+  ent_length_c.grid(column=1, row=3)
+
+  lbl_height = tk.Label(text="Height", master=input_box)
+  lbl_height['font'] = myFont
+  lbl_height.grid(column=0, row=4)
+
+  ent_length_c = tk.Entry(master=input_box)
+  ent_length_c['font'] = myFont
+  ent_length_c.grid(column=1, row=4)
+
+  btn_calc_peri = tk.Button(text="Perimeter", master=input_box)
+  btn_calc_peri['font'] = myFont
+  btn_calc_peri.grid(column=0, row=5)
+
+  btn_calc_area = tk.Button(text="Area", master=input_box)
+  btn_calc_area['font'] = myFont
+  btn_calc_area.grid(column=1, row=5)
+
+  input_box.grid(column=0, row=2)
 
 
 ### Calculation Functions
@@ -194,6 +313,7 @@ def triangle_perimeter():
 window = tk.Tk(className=" Area Perimeter Calculator")
 window.geometry("500x300")
 
+input_box = tk.Frame()
 #Define font
 myFont = font.Font(size=10)
 
