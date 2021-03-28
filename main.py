@@ -39,17 +39,19 @@ t_height = 0
 #final values
 perimeter = 0
 area = 0
-
+#myFont = font.Font(size=10)
 
 ### Functions ###
 def clear_frame():
-  input_box.destroy()
+  for widget in window.winfo_children():
+    widget.destroy()
 ### Shape Functions###
 
 def rectangle_update_frame():
-  
+  global myFont
   clear_frame()
-  
+  create_window()
+  myFont = font.Font(size=10)
   input_box = tk.Frame(master=window)
   
 
@@ -77,14 +79,23 @@ def rectangle_update_frame():
   btn_calc_area['font'] = myFont
   btn_calc_area.grid(column=1, row=2)
 
+  lbl_result = tk.Label(text="", master=input_box)
+  lbl_result['font'] = myFont
+  lbl_result.grid(column=0, row=3)
+
   input_box.grid(column=0, row=2)
 
   
 def square_update_frame():
+  myFont = font.Font(size=10)
+
+  clear_frame()
+  create_window()
   
   input_box = tk.Frame(master=window)
   
-  input_box.forget
+
+
   lbl_length_a = tk.Label(text="Length", master=input_box)
   lbl_length_a['font'] = myFont
   lbl_length_a.grid(column=0, row=0)
@@ -101,12 +112,21 @@ def square_update_frame():
   btn_calc_area['font'] = myFont
   btn_calc_area.grid(column=1, row=2)
 
+  lbl_result = tk.Label(text="", master=input_box)
+  lbl_result['font'] = myFont
+  lbl_result.grid(column=0, row=3)
+
   input_box.grid(column=0, row=2)
 
 def para_update_frame():
-  
+  myFont = font.Font(size=10)
+  clear_frame()
+  create_window()
+
   input_box = tk.Frame(master=window)
-  input_box.forget
+  
+  
+
   lbl_length_a = tk.Label(text="Length A", master=input_box)
   lbl_length_a['font'] = myFont
   lbl_length_a.grid(column=0, row=0)
@@ -131,12 +151,22 @@ def para_update_frame():
   btn_calc_area['font'] = myFont
   btn_calc_area.grid(column=1, row=2)
 
+  lbl_result = tk.Label(text="", master=input_box)
+  lbl_result['font'] = myFont
+  lbl_result.grid(column=0, row=3)
+
   input_box.grid(column=0, row=2)
   
   
 def circle_update_frame():
+  myFont = font.Font(size=10)
+  
+  clear_frame()
+  create_window()
+
   input_box = tk.Frame(master=window)
-  input_box.forget
+
+
   lbl_length_a = tk.Label(text="Radius", master=input_box)
   lbl_length_a['font'] = myFont
   lbl_length_a.grid(column=0, row=0)
@@ -153,14 +183,23 @@ def circle_update_frame():
   btn_calc_area['font'] = myFont
   btn_calc_area.grid(column=1, row=2)
 
+  lbl_result = tk.Label(text="", master=input_box)
+  lbl_result['font'] = myFont
+  lbl_result.grid(column=0, row=3)
+
   input_box.grid(column=0, row=2)
   
 
 def triangle_update_frame():
-  
+  myFont = font.Font(size=10)
+
+  clear_frame()
+  create_window()
+
   input_box = tk.Frame(master=window)
-  input_box.forget
   
+
+
   lbl_length_a = tk.Label(text="Length A", master=input_box)
   lbl_length_a['font'] = myFont
   lbl_length_a.grid(column=0, row=0)
@@ -187,11 +226,11 @@ def triangle_update_frame():
   
   lbl_height = tk.Label(text="Height", master=input_box)
   lbl_height['font'] = myFont
-  lbl_height.grid(column=0, row=2)
+  lbl_height.grid(column=0, row=3)
 
   ent_length_c = tk.Entry(master=input_box)
   ent_length_c['font'] = myFont
-  ent_length_c.grid(column=1, row=2)
+  ent_length_c.grid(column=1, row=3)
   
   btn_calc_peri = tk.Button(text="Perimeter", master=input_box)
   btn_calc_peri['font'] = myFont
@@ -201,12 +240,20 @@ def triangle_update_frame():
   btn_calc_area['font'] = myFont
   btn_calc_area.grid(column=1, row=4)
 
+  lbl_result = tk.Label(text="", master=input_box)
+  lbl_result['font'] = myFont
+  lbl_result.grid(column=0, row=5)
+
   input_box.grid(column=0, row=2)
   
 
 def trapisium_update_frame():
+  myFont = font.Font(size=10)
+  clear_frame()
+  create_window()
+  
   input_box = tk.Frame(master=window)
-  input_box.forget
+  
   
   lbl_length_a = tk.Label(text="Length A", master=input_box)
   lbl_length_a['font'] = myFont
@@ -256,6 +303,10 @@ def trapisium_update_frame():
   btn_calc_area['font'] = myFont
   btn_calc_area.grid(column=1, row=5)
 
+  lbl_result = tk.Label(text="", master=input_box)
+  lbl_result['font'] = myFont
+  lbl_result.grid(column=0, row=6)
+
   input_box.grid(column=0, row=2)
 
 
@@ -265,6 +316,8 @@ def rectangle_perimeter():
   global length_b
   global perimeter
 
+  
+  
   perimeter = ((2 * length_a) + (2 * length_b))
 
 def rectangle_area():
@@ -306,48 +359,49 @@ def triangle_perimeter():
   global side3
   global perimeter
 
+def create_window():
+
+
+  #Define font
+  
+  myFont = font.Font(size=10)
+  lbl_title = tk.Label(text = "Area / Perimeter Calculator")
+  lbl_title.grid(column=0, row=0, sticky="nsew")
+
+
+  fr_buttons = tk.Frame(master = window)
+  #Create buttons for the shapes...
+  rectangle = tk.Button(text="Rectangle", master=fr_buttons, command=rectangle_update_frame)
+  rectangle['font'] = myFont
+  rectangle.grid(column=0, row=0, sticky="nsew")
+
+  square = tk.Button(text="Square", master=fr_buttons, command=square_update_frame)
+  square['font'] = myFont
+  square.grid(column=1, row=0, sticky="nsew")
+
+  para = tk.Button(text="Paralellogram", master=fr_buttons, command=para_update_frame)
+  para['font'] = myFont
+  para.grid(column=2, row=0, sticky="nsew")
+
+  circle = tk.Button(text="Circle", master=fr_buttons, command=circle_update_frame)
+  circle['font'] = myFont
+  circle.grid(column=0, row=1, sticky="nsew")
+
+  triangle = tk.Button(text="Triangle", master=fr_buttons, command=triangle_update_frame)
+  triangle['font'] = myFont
+  triangle.grid(column=1, row=1, sticky="nsew")
+
+  trapisium = tk.Button(text="Trapisium", master=fr_buttons, command=trapisium_update_frame)
+  trapisium['font'] = myFont
+  trapisium.grid(column=2, row=1, sticky="nsew")
+
+  fr_buttons.grid(column=0, row=1)
 
 #Main Code
-
-
+  
 window = tk.Tk(className=" Area Perimeter Calculator")
 window.geometry("500x300")
-
-input_box = tk.Frame()
-#Define font
-myFont = font.Font(size=10)
-
-lbl_title = tk.Label(text = "Area / Perimeter Calculator")
-lbl_title.grid(column=0, row=0, sticky="nsew")
-
-
-fr_buttons = tk.Frame(master = window)
-#Create buttons for the shapes...
-rectangle = tk.Button(text="Rectangle", master=fr_buttons, command=rectangle_update_frame)
-rectangle['font'] = myFont
-rectangle.grid(column=0, row=0, sticky="nsew")
-
-square = tk.Button(text="Square", master=fr_buttons, command=square_update_frame)
-square['font'] = myFont
-square.grid(column=1, row=0, sticky="nsew")
-
-para = tk.Button(text="Paralellogram", master=fr_buttons, command=para_update_frame)
-para['font'] = myFont
-para.grid(column=2, row=0, sticky="nsew")
-
-circle = tk.Button(text="Circle", master=fr_buttons, command=circle_update_frame)
-circle['font'] = myFont
-circle.grid(column=0, row=1, sticky="nsew")
-
-triangle = tk.Button(text="Triangle", master=fr_buttons, command=triangle_update_frame)
-triangle['font'] = myFont
-triangle.grid(column=1, row=1, sticky="nsew")
-
-trapisium = tk.Button(text="Trapisium", master=fr_buttons, command=trapisium_update_frame)
-trapisium['font'] = myFont
-trapisium.grid(column=2, row=1, sticky="nsew")
-
-fr_buttons.grid(column=0, row=1)
+create_window()
 
 
 window.mainloop()
