@@ -125,6 +125,7 @@ def para_update_frame():
   myFont = font.Font(size=10)
   global ent_length_a
   global ent_length_b
+  global ent_height
   global lbl_result
   clear_frame()
   create_window()
@@ -171,10 +172,10 @@ def para_update_frame():
 
   input_box.grid(column=0, row=2)
   
-  
 def circle_update_frame():
   myFont = font.Font(size=10)
-  
+  global ent_radius
+  global lbl_result
   clear_frame()
   create_window()
 
@@ -189,24 +190,31 @@ def circle_update_frame():
   ent_radius['font'] = myFont
   ent_radius.grid(column=1, row=0)
 
-  btn_calc_peri = tk.Button(text="Perimeter", master=input_box)
+  btn_calc_peri = tk.Button(text="Circumference", master=input_box, command=circle_perimeter)
   btn_calc_peri['font'] = myFont
   btn_calc_peri.grid(column=0, row=2)
 
-  btn_calc_area = tk.Button(text="Area", master=input_box)
+  btn_calc_area = tk.Button(text="Area", master=input_box, command=circle_perimeter)
   btn_calc_area['font'] = myFont
   btn_calc_area.grid(column=1, row=2)
 
-  lbl_result = tk.Label(text="", master=input_box)
+  fr_result = tk.Frame(master=input_box)
+  lbl_result = tk.Label(text="", master=fr_result)
   lbl_result['font'] = myFont
-  lbl_result.grid(column=0, row=3)
+  lbl_result.grid(column=0, row=0)
+  fr_result.grid(column=1, row=3)
+
 
   input_box.grid(column=0, row=2)
   
-
 def triangle_update_frame():
   myFont = font.Font(size=10)
 
+  global ent_base
+  global ent_height
+  global ent_length_a
+  global ent_length_b
+  global lbl_result
   clear_frame()
   create_window()
 
@@ -214,43 +222,43 @@ def triangle_update_frame():
   
 
 
-  lbl_length_a = tk.Label(text="Length A", master=input_box)
+  lbl_base = tk.Label(text="Base", master=input_box)
+  lbl_base['font'] = myFont
+  lbl_base.grid(column=0, row=0)
+
+  ent_base = tk.Entry(master=input_box)
+  ent_base['font'] = myFont
+  ent_base.grid(column=1, row=0)
+
+  lbl_length_a = tk.Label(text="Side A", master=input_box)
   lbl_length_a['font'] = myFont
-  lbl_length_a.grid(column=0, row=0)
+  lbl_length_a.grid(column=0, row=1)
 
-  ent_radius = tk.Entry(master=input_box)
-  ent_radius['font'] = myFont
-  ent_radius.grid(column=1, row=0)
-
-  lbl_length_b = tk.Label(text="Length B", master=input_box)
+  ent_length_a = tk.Entry(master=input_box)
+  ent_length_a['font'] = myFont
+  ent_length_a.grid(column=1, row=1)
+  
+  lbl_length_b = tk.Label(text="Side B", master=input_box)
   lbl_length_b['font'] = myFont
-  lbl_length_b.grid(column=0, row=1)
+  lbl_length_b.grid(column=0, row=2)
 
   ent_length_b = tk.Entry(master=input_box)
   ent_length_b['font'] = myFont
-  ent_length_b.grid(column=1, row=1)
-  
-  lbl_length_c = tk.Label(text="Length C", master=input_box)
-  lbl_length_c['font'] = myFont
-  lbl_length_c.grid(column=0, row=2)
-
-  ent_length_c = tk.Entry(master=input_box)
-  ent_length_c['font'] = myFont
-  ent_length_c.grid(column=1, row=2)
+  ent_length_b.grid(column=1, row=2)
   
   lbl_height = tk.Label(text="Height", master=input_box)
   lbl_height['font'] = myFont
   lbl_height.grid(column=0, row=3)
 
-  ent_length_c = tk.Entry(master=input_box)
-  ent_length_c['font'] = myFont
-  ent_length_c.grid(column=1, row=3)
+  ent_height = tk.Entry(master=input_box)
+  ent_height['font'] = myFont
+  ent_height.grid(column=1, row=3)
   
-  btn_calc_peri = tk.Button(text="Perimeter", master=input_box)
+  btn_calc_peri = tk.Button(text="Perimeter", master=input_box, command=triangle_perimeter)
   btn_calc_peri['font'] = myFont
   btn_calc_peri.grid(column=0, row=4)
 
-  btn_calc_area = tk.Button(text="Area", master=input_box)
+  btn_calc_area = tk.Button(text="Area", master=input_box, command=triangle_area)
   btn_calc_area['font'] = myFont
   btn_calc_area.grid(column=1, row=4)
 
@@ -374,18 +382,34 @@ def square_area():
   lbl_result['text'] = (f"Area: {area}")
 
 def para_area():
-  
+  global length_a
+  global length_b
+  global height
+  global area
+
+  length_a = float(ent_length_a.get())
+  height = float(ent_height.get())
+
+  area = (length_a * height)
+  lbl_result['text'] = (f"Area: {area}")
+
 def circle_perimeter():
   global radius
   global pi
   global perimeter
 
+  radius = float(ent_radius.get())
+
   perimeter = ((2 * radius) * pi)
+  lbl_result['text'] = (f"Circumference: {perimeter}")
 
 def circle_area():
   global pi
   global radius
   global area
+
+  radius = float(ent_radius.get())
+
 
   area = ((radius * radius) * pi)
 
@@ -394,6 +418,26 @@ def triangle_perimeter():
   global side2
   global side3
   global perimeter
+
+  side1 = float(ent_base.get())
+  side2 = float(ent_length_a.get())
+  side3 = float(ent_length_b.get())
+
+  perimeter = (side1 + side2 + side3)
+  lbl_result['text'] = (f"Perimeter: {perimeter}")
+
+def triangle_area():
+  global ent_base
+  global ent_height
+  global base
+  global height
+  global area
+
+  base = float(ent_base.get())
+  height = float(ent_height.get())
+
+  area = (0.5 * base * height)
+  lbl_result['text'] = (f"Area: {area}")
 
 def create_window():
 
