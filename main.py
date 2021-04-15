@@ -20,7 +20,7 @@ width = 0
 
 #circle values
 radius = 0
-pi = 3.14159
+pi = 3.14
 
 #triangle values
 side1 = 0
@@ -256,7 +256,7 @@ def para_update_frame():
   ent_height['font'] = myFont
   ent_height.grid(column=1, row=2)
 
-  btn_calc_peri = tk.Button(text="Perimeter", master=input_box, command=rectangle_perimeter)
+  btn_calc_peri = tk.Button(text="Perimeter", master=input_box, command=para_perimeter)
   btn_calc_peri['font'] = myFont
   btn_calc_peri.grid(column=0, row=3)
 
@@ -299,7 +299,7 @@ def circle_update_frame():
 
   lbl_result = tk.Label(text="", master=input_box)
   lbl_result['font'] = myFont
-  lbl_result.grid(column=0, row=0, columnspan=2, sticky="EW")
+  lbl_result.grid(column=0, row=3, columnspan=2, sticky="EW")
 
   input_box.grid(column=0, row=2)
   
@@ -498,8 +498,23 @@ def para_area():
   height = float(ent_height.get())
 
   area = (length_a * height)
-  lbl_result['text'] = (f"Area = {length_a} x {height} = {area}")
+  lbl_result['text'] = (f"Paralellogram Area = {length_a} x {height} = {area}")
 
+def para_perimeter():
+  global length_a
+  global length_b
+  global ent_length_a
+  global ent_length_b
+  global lbl_result
+  global perimeter
+
+  #Get Values from Input Boxes 
+  length_a = float(ent_length_a.get())
+  length_b = float(ent_length_b.get())
+  
+  perimeter = ((2 * length_a) + (2 * length_b))
+
+  lbl_result['text'] = (f"Paralellogram Perimeter = (2 x {length_a}) + (2 x {length_b}) = {perimeter}")
 def circle_perimeter():
   global radius
   global pi
@@ -508,7 +523,7 @@ def circle_perimeter():
   radius = float(ent_radius.get())
 
   perimeter = ((2 * radius) * pi)
-  lbl_result['text'] = (f"Circumference = 2 x 3.14 x {radius} = {round(perimeter, 2)}")
+  lbl_result['text'] = (f"Circle Circumference = 2 x 3.14 x {radius} = {round(perimeter, 2)}")
 
 def circle_area():
   global pi
@@ -519,7 +534,7 @@ def circle_area():
 
 
   area = ((radius * radius) * pi)
-  lbl_result['text'] = (f"Area:  = {round(area, 2)}")
+  lbl_result['text'] = (f"Circle Area:  3.14 x ({radius} x {radius}) = {round(area, 2)}")
 
 def triangle_perimeter():
   global side1
@@ -532,7 +547,7 @@ def triangle_perimeter():
   side3 = float(ent_length_b.get())
 
   perimeter = (side1 + side2 + side3)
-  lbl_result['text'] = (f"Perimeter: {perimeter}")
+  lbl_result['text'] = (f"Triangle Perimeter: {side1} + {side2} + {side3} = {perimeter}")
 
 def triangle_area():
   global ent_base
@@ -545,7 +560,7 @@ def triangle_area():
   height = float(ent_height.get())
 
   area = (0.5 * base * height)
-  lbl_result['text'] = (f"Area: {area}")
+  lbl_result['text'] = (f"Triangle Area = 0.5 x {base} x {height} = {area}")
 
 def trap_area():
   global ent_topside
@@ -561,7 +576,7 @@ def trap_area():
   height = float(ent_height.get())
 
   area = (((t_length1 * t_length2) / 2) * height)
-  lbl_result['text'] = (f"Area: {area}")
+  lbl_result['text'] = (f"Trapisium Area = 0.5 x ({t_length1} + {t_length2}) x {height} = {area}")
 
 def trap_perimeter():
   global ent_topside
@@ -579,7 +594,7 @@ def trap_perimeter():
   t_length4 = float(ent_rightside.get())
 
   perimeter = (t_length1 + t_length2 + t_length3 + t_length4)
-  lbl_result['text'] = (f"Perimeter = {perimeter}")
+  lbl_result['text'] = (f"Trapisium Perimeter = {t_length1} + {t_length2} + {t_length3} + {t_length4} = {perimeter}")
 
 
 
