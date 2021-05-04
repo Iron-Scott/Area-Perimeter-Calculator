@@ -10,7 +10,6 @@ import tkinter.messagebox
 import os
 
 lbl_history = tk.messagebox
-
 ### Values for all shapes###
 #rectangle, square and paralellogram values
 
@@ -136,6 +135,24 @@ def delete_history():
   f.write("Equation History:\n")
   f.close()
 
+def callback(input):
+      
+    if input.isdigit():
+        print(input)
+        return True
+
+    elif input == ".":
+        print(input)
+        return True
+
+    elif input == "":
+        print(input)
+        return True
+  
+    else:
+        print(input)
+        return False
+
 ### Shape Frame Functions###
 
 def rectangle_update_frame():
@@ -143,6 +160,7 @@ def rectangle_update_frame():
   global ent_length_a
   global ent_length_b
   global lbl_result
+  global reg
   #Clears the window, and rebuilds the window. This solves our problem with inputting the new frames. This also fixes the problem of frames overlapping when replacing the frame.
   clear_frame()
   create_window()
@@ -154,11 +172,14 @@ def rectangle_update_frame():
 
   lbl_length_a = tk.Label(text="Length A", master=input_box)
   lbl_length_a['font'] = myFont
-  lbl_length_a.grid(column=0, row=0)
+  lbl_length_a.grid(column=0, row=0)    
 
   ent_length_a = tk.Entry(master=input_box)
   ent_length_a['font'] = myFont
   ent_length_a.grid(column=1, row=0)
+ 
+  ent_length_a.config(validate ="key", 
+    validatecommand =(reg, '%d'))
 
   lbl_length_b = tk.Label(text="Length B", master=input_box)
   lbl_length_b['font'] = myFont
@@ -167,6 +188,9 @@ def rectangle_update_frame():
   ent_length_b = tk.Entry(master=input_box)
   ent_length_b['font'] = myFont
   ent_length_b.grid(column=1, row=1)
+
+  ent_length_b.config(validate ="key", 
+    validatecommand =(reg, '%d'))
 
   btn_calc_peri = tk.Button(text="Perimeter", master=input_box, command=rectangle_perimeter)
   btn_calc_peri['font'] = myFont
@@ -202,6 +226,9 @@ def square_update_frame():
   ent_length_a = tk.Entry(master=input_box)
   ent_length_a['font'] = myFont
   ent_length_a.grid(column=1, row=0)
+
+  ent_length_a.config(validate ="key", 
+  validatecommand =(reg, '%d'))
 
   btn_calc_peri = tk.Button(text="Perimeter", master=input_box, command=square_perimeter)
   btn_calc_peri['font'] = myFont
@@ -240,6 +267,9 @@ def para_update_frame():
   ent_length_a['font'] = myFont
   ent_length_a.grid(column=1, row=0)
 
+  ent_length_a.config(validate ="key", 
+  validatecommand =(reg, '%d'))
+
   lbl_length_b = tk.Label(text="Side", master=input_box)
   lbl_length_b['font'] = myFont
   lbl_length_b.grid(column=0, row=1)
@@ -248,6 +278,9 @@ def para_update_frame():
   ent_length_b['font'] = myFont
   ent_length_b.grid(column=1, row=1)
 
+  ent_length_b.config(validate ="key", 
+  validatecommand =(reg, '%d'))
+
   lbl_height = tk.Label(text="Height", master=input_box)
   lbl_height['font'] = myFont
   lbl_height.grid(column=0, row=2)
@@ -255,6 +288,9 @@ def para_update_frame():
   ent_height = tk.Entry(master=input_box)
   ent_height['font'] = myFont
   ent_height.grid(column=1, row=2)
+
+  ent_height.config(validate ="key", 
+  validatecommand =(reg, '%d'))
 
   btn_calc_peri = tk.Button(text="Perimeter", master=input_box, command=para_perimeter)
   btn_calc_peri['font'] = myFont
@@ -288,6 +324,9 @@ def circle_update_frame():
   ent_radius = tk.Entry(master=input_box)
   ent_radius['font'] = myFont
   ent_radius.grid(column=1, row=0)
+
+  ent_radius.config(validate ="key", 
+  validatecommand =(reg, '%d'))
 
   btn_calc_peri = tk.Button(text="Circumference", master=input_box, command=circle_perimeter)
   btn_calc_peri['font'] = myFont
@@ -327,6 +366,9 @@ def triangle_update_frame():
   ent_base['font'] = myFont
   ent_base.grid(column=1, row=0)
 
+  ent_base.config(validate ="key", 
+  validatecommand =(reg, '%d'))
+
   lbl_length_a = tk.Label(text="Side A", master=input_box)
   lbl_length_a['font'] = myFont
   lbl_length_a.grid(column=0, row=1)
@@ -335,6 +377,9 @@ def triangle_update_frame():
   ent_length_a['font'] = myFont
   ent_length_a.grid(column=1, row=1)
   
+  ent_length_a.config(validate ="key", 
+  validatecommand =(reg, '%d'))
+
   lbl_length_b = tk.Label(text="Side B", master=input_box)
   lbl_length_b['font'] = myFont
   lbl_length_b.grid(column=0, row=2)
@@ -343,6 +388,9 @@ def triangle_update_frame():
   ent_length_b['font'] = myFont
   ent_length_b.grid(column=1, row=2)
   
+  ent_length_b.config(validate ="key", 
+  validatecommand =(reg, '%d'))
+
   lbl_height = tk.Label(text="Height", master=input_box)
   lbl_height['font'] = myFont
   lbl_height.grid(column=0, row=3)
@@ -351,6 +399,9 @@ def triangle_update_frame():
   ent_height['font'] = myFont
   ent_height.grid(column=1, row=3)
   
+  ent_height.config(validate ="key", 
+  validatecommand =(reg, '%d'))
+
   btn_calc_peri = tk.Button(text="Perimeter", master=input_box, command=triangle_perimeter)
   btn_calc_peri['font'] = myFont
   btn_calc_peri.grid(column=0, row=4)
@@ -391,6 +442,9 @@ def trapisium_update_frame():
   ent_topside['font'] = myFont
   ent_topside.grid(column=1, row=0)
 
+  ent_topside.config(validate ="key", 
+  validatecommand =(reg, '%d'))
+
   lbl_bottomside = tk.Label(text="Bottom", master=input_box)
   lbl_bottomside['font'] = myFont
   lbl_bottomside.grid(column=0, row=1)
@@ -398,7 +452,10 @@ def trapisium_update_frame():
   ent_bottomside = tk.Entry(master=input_box)
   ent_bottomside['font'] = myFont
   ent_bottomside.grid(column=1, row=1)
-  
+
+  ent_bottomside.config(validate ="key", 
+  validatecommand =(reg, '%d'))  
+
   lbl_leftside = tk.Label(text="Left Side", master=input_box)
   lbl_leftside['font'] = myFont
   lbl_leftside.grid(column=0, row=2)
@@ -406,6 +463,9 @@ def trapisium_update_frame():
   ent_leftside = tk.Entry(master=input_box)
   ent_leftside['font'] = myFont
   ent_leftside.grid(column=1, row=2)
+  
+  ent_leftside.config(validate ="key", 
+  validatecommand =(reg, '%d'))
   
   lbl_rightside = tk.Label(text="Right Side", master=input_box)
   lbl_rightside['font'] = myFont
@@ -415,6 +475,9 @@ def trapisium_update_frame():
   ent_rightside['font'] = myFont
   ent_rightside.grid(column=1, row=3)
 
+  ent_rightside.config(validate ="key", 
+  validatecommand =(reg, '%d'))
+
   lbl_height = tk.Label(text="Height", master=input_box)
   lbl_height['font'] = myFont
   lbl_height.grid(column=0, row=4)
@@ -423,6 +486,9 @@ def trapisium_update_frame():
   ent_height['font'] = myFont
   ent_height.grid(column=1, row=4)
 
+  ent_height.config(validate ="key", 
+  validatecommand =(reg, '%d'))
+  
   btn_calc_peri = tk.Button(text="Perimeter", master=input_box, command=trap_perimeter)
   btn_calc_peri['font'] = myFont
   btn_calc_peri.grid(column=0, row=5)
@@ -447,8 +513,10 @@ def rectangle_perimeter():
   global lbl_result
   global perimeter
 
+
   #Get Values from Input Boxes 
   length_a = float(ent_length_a.get())
+
   length_b = float(ent_length_b.get())
   
   perimeter = ((2 * length_a) + (2 * length_b))
@@ -602,6 +670,7 @@ def trap_perimeter():
 #Main Code
   
 window = tk.Tk(className=" Area Perimeter Calculator")
+reg = window.register(callback)
 window.geometry("500x300")
 create_window()
 

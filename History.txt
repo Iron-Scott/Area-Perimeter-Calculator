@@ -1,3 +1,2 @@
 Equation History:
-Perimeter = (2 x 124.0) + (2 x 4.0) = 256.0
-
+Rectangle Perimeter = (2 x 124.0) + (2 x 152.0) = 552.0
