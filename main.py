@@ -63,22 +63,27 @@ def create_window():
   rectangle['font'] = myFont
   rectangle.grid(column=0, row=0, sticky="nsew")
 
+  #Square Button
   square = tk.Button(text="Square", master=fr_buttons, command=square_update_frame)
   square['font'] = myFont
   square.grid(column=1, row=0, sticky="nsew")
 
+  #Paralellogram Button
   para = tk.Button(text="Paralellogram", master=fr_buttons, command=para_update_frame)
   para['font'] = myFont
   para.grid(column=2, row=0, sticky="nsew")
 
+  #Circle Button
   circle = tk.Button(text="Circle", master=fr_buttons, command=circle_update_frame)
   circle['font'] = myFont
   circle.grid(column=0, row=1, sticky="nsew")
 
+  #Triangle Button
   triangle = tk.Button(text="Triangle", master=fr_buttons, command=triangle_update_frame)
   triangle['font'] = myFont
   triangle.grid(column=1, row=1, sticky="nsew")
 
+  #Trapisium Button
   trapisium = tk.Button(text="Trapisium", master=fr_buttons, command=trapisium_update_frame)
   trapisium['font'] = myFont
   trapisium.grid(column=2, row=1, sticky="nsew")
@@ -97,19 +102,22 @@ def create_filebuttons():
   btn_newequation['font'] = myFont
   btn_newequation.grid(column=0, row=0)
 
-
+  #Save Data Button saves the previous calculation to a new file.
   btn_savedata = tk.Button(text="Save Data", master=filebuttons, command=save_data)
   btn_savedata['font'] = myFont
   btn_savedata.grid(column=1, row=0)
 
+  #View File Button brings up a new window containing the information previously saved.
   btn_viewfile = tk.Button(text="View File", master=filebuttons, command=view_file)
   btn_viewfile['font'] = myFont
   btn_viewfile.grid(column=0, row=1)
 
+  #Delete History Button deletes the history from the page, but resets it back to a clear state.
   btn_deletehistory = tk.Button(text="Delete History", master=filebuttons, command=delete_history)
   btn_deletehistory['font'] = myFont
   btn_deletehistory.grid(column=1, row=1)
 
+  #Places File Buttons Frame into the window.
   filebuttons.grid(column=0, row=3)
 
 def reset_window():
@@ -119,19 +127,24 @@ def reset_window():
 
   
 def save_data():
+  #This function is for the History Window. When a person clicks the "Save Data" Button, it takes the result from the equation, and saves this value in a new file.
   global lbl_result
   data = lbl_result['text']
 
   f = open("History.txt", "a")
+  #Writes the data, then creates a new line.
   f.write(data + "\n")
   f.close()
 
 def view_file():
+  #Opens the History Window
   os.system('python viewfile.py')
 
 def delete_history():
   f = open("History.txt", "r+")
+  #Clears the File
   f.truncate(0)
+  #Creates new line with Equation History
   f.write("Equation History:\n")
   f.close()
 
@@ -147,7 +160,7 @@ def callback(input):
 
     elif input == "":
         print(input)
-        return True
+        return False
   
     else:
         print(input)
@@ -179,7 +192,7 @@ def rectangle_update_frame():
   ent_length_a.grid(column=1, row=0)
  
   ent_length_a.config(validate ="key", 
-    validatecommand =(reg, '%d'))
+    validatecommand =(reg, '%P'))
 
   lbl_length_b = tk.Label(text="Length B", master=input_box)
   lbl_length_b['font'] = myFont
@@ -519,6 +532,7 @@ def rectangle_perimeter():
 
   length_b = float(ent_length_b.get())
   
+  #Calculates out the Perimeter using the Float Values
   perimeter = ((2 * length_a) + (2 * length_b))
 
   lbl_result['text'] = (f"Rectangle Perimeter = (2 x {length_a}) + (2 x {length_b}) = {perimeter}")
